@@ -11,7 +11,9 @@ ENV JAVA_VERSION_MAJOR=8 \
     JAVA_VERSION_BUILD=02 \
     JAVA_PACKAGE=jdk \
     JAVA_HOME=/opt/jdk \
-    PATH=${PATH}:/opt/jdk/bin \
+    ENV M2_HOME=/usr/lib/mvn \
+    ENV M2=$M2_HOME/bin \
+    PATH=${PATH}:/opt/jdk/bin:$M2_HOME:$M2 \
     LANG=C.UTF-8
 
 # do all in one step
@@ -62,5 +64,10 @@ RUN apk upgrade --update && \
            /opt/jdk/jre/lib/plugin.jar \
            /tmp/* /var/cache/apk/* && \
     echo 'hosts: files mdns4_minimal [NOTFOUND=return] dns mdns4' >> /etc/nsswitch.conf
+
+    RUN wget http://ftp.fau.de/apache/maven/maven-3/3.3.1/binaries/apache-maven-3.3.1-bin.tar.gz
+    RUN tar -zxvf apache-maven-3.3.1-bin.tar.gz
+    RUN rm apache-maven-3.3.1-bin.tar.gz
+    RUN mv apache-maven-3.3.1 /usr/lib/mvn
 
 # EOF
