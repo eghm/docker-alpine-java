@@ -11,8 +11,8 @@ ENV JAVA_VERSION_MAJOR=8 \
     JAVA_VERSION_BUILD=02 \
     JAVA_PACKAGE=jdk \
     JAVA_HOME=/opt/jdk \
-    ENV M2_HOME=/usr/lib/mvn \
-    ENV M2=$M2_HOME/bin \
+    M2_HOME=/usr/lib/mvn \
+    M2=$M2_HOME/bin \
     PATH=${PATH}:/opt/jdk/bin:$M2_HOME:$M2 \
     LANG=C.UTF-8
 
